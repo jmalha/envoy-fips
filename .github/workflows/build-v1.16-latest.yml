@@ -1,0 +1,28 @@
+name: Build Enovy v1.16 and push on DockerHub 
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+    - name: Build Envoy image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        tags: aakatev/envoy:v1.16-latest
+        load: true
+        build-args: |
+          ENVOY_BRANCH=release/v1.16
+
+    - name: Push Envoy image to DockerHub
+      run: docker push aakatev/envoy:v1.16-latest
