@@ -7,5 +7,5 @@ Envoy Docker image in FIPS compliant mode.
 To build image use docker cli, for example:
 
 ```sh
-docker build -t aakatev/envoy-fips:v1.16-latest .
+docker build -t test/envoy-fips:v1.24-latest .
 ```

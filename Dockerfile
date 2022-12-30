@@ -1,9 +1,9 @@
-ARG BUILDER_IMAGE_NAME=envoyproxy/envoy-build-ubuntu:b480535e8423b5fd7c102fd30c92f4785519e33a
+ARG BUILDER_IMAGE_NAME=envoyproxy/envoy-build-ubuntu:5c8e6ab946230d0232d6875344f28457a3c68dd7
 
 FROM ${BUILDER_IMAGE_NAME} as builder
 
-ARG ENVOY_BRANCH=release/v1.16
-ARG ENVOY_REPO=https://github.com/envoyproxy/envoy.git
+ARG ENVOY_BRANCH=main
+ARG ENVOY_REPO=https://github.com/jmalha/envoy-graviton.git
 
 RUN git clone --depth 1 --branch ${ENVOY_BRANCH} ${ENVOY_REPO} /source
 WORKDIR /source
